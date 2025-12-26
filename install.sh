@@ -12,6 +12,21 @@ fi
 # Create .claude directory if it doesn't exist
 mkdir -p ~/.claude
 
+echo "🔌 Installing Claude Code Stepwise-Dev Plugin"
+# Add marketplace (only if not already added)
+if ! claude plugin marketplace list 2>/dev/null | grep -q "stepwise-dev"; then
+    claude plugin marketplace add nikeyes/stepwise-dev
+else
+    echo "ℹ️  Marketplace stepwise-dev already added, skipping..."
+fi
+
+# Install plugin (only if not already installed)
+if ! claude plugin list 2>/dev/null | grep -q "stepwise-dev"; then
+    claude plugin install stepwise-dev@stepwise-dev
+else
+    echo "ℹ️  Plugin stepwise-dev already installed, skipping..."
+fi
+
 echo "📋 Installing CLAUDE.md"
 gcp --backup=numbered ./CLAUDE.md ~/.claude/CLAUDE.md
 
@@ -31,6 +46,7 @@ echo ""
 echo "✅ Claude Code public configuration installed successfully"
 echo ""
 echo "📝 What was installed:"
+echo "   - Stepwise-Dev plugin"
 echo "   - TDD development guidelines (CLAUDE.md)"
 echo "   - Custom status line script"
 echo "   - Profile switcher utility"

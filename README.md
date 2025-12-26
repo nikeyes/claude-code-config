@@ -4,6 +4,7 @@ Public, shareable configuration for Claude Code including CLAUDE.md, custom comm
 
 ## What's Included
 
+- **Stepwise-Dev Plugin** - Public Claude Code plugin for advanced workflows
 - **CLAUDE.md** - TDD development guidelines and best practices
 - **statusline.sh** - Custom status line showing context usage with color-coded progress bar
 - **switch-claude-config.sh** - Utility to switch between configuration profiles
