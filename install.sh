@@ -42,6 +42,9 @@ echo "🎯 Installing Custom Commands"
 mkdir -p ~/.claude/commands
 gcp --backup=numbered ./commands/*.md ~/.claude/commands/
 
+echo "⚙️  Installing Personal Settings"
+gcp --backup=numbered ./settings-personal.json ~/.claude/settings-personal.json
+
 echo ""
 echo "✅ Claude Code public configuration installed successfully"
 echo ""
@@ -51,8 +54,9 @@ echo "   - TDD development guidelines (CLAUDE.md)"
 echo "   - Custom status line script"
 echo "   - Profile switcher utility"
 echo "   - Custom commands (nikeyes-*)"
+echo "   - Personal settings profile (settings-personal.json)"
 echo ""
 echo "💡 Next steps:"
 echo "   - For company-specific setup, run the private repo installer"
-echo "   - Configure your settings.json or use profile switching"
+echo "   - Use 'claudep' alias to switch to personal profile and start Claude"
 echo ""

@@ -8,6 +8,7 @@ Public, shareable configuration for Claude Code including CLAUDE.md, custom comm
 - **CLAUDE.md** - TDD development guidelines and best practices
 - **statusline.sh** - Custom status line showing context usage with color-coded progress bar
 - **switch-claude-config.sh** - Utility to switch between configuration profiles
+- **settings-personal.json** - Personal configuration profile with local telemetry
 - **commands/** - Custom Claude Code commands:
   - `nikeyes-understand` - Understand project structure
   - `nikeyes-security-scan` - Security analysis
@@ -42,9 +43,9 @@ cd ~/path/to/private/repo
 ## What's NOT Included
 
 This repository does NOT include:
-- Company-specific AWS Bedrock configurations
+- Company-specific AWS Bedrock configurations (settings-company.json)
 - API keys or credentials
-- Private settings files
+- Company-specific AWS profile setup
 - Company-specific installation scripts
 
 ## File Structure
@@ -54,7 +55,8 @@ claude-code-config/
 ├── README.md                     # This file
 ├── install.sh                    # Standalone installer
 ├── uninstall.sh                  # Uninstaller
-├── CLAUDE.md                     # CLAUDE.md
+├── CLAUDE.md                     # TDD guidelines
+├── settings-personal.json        # Personal settings profile
 ├── statusline.sh                 # Status bar script
 ├── statusline-test.sh            # Test script
 ├── switch-claude-config.sh       # Profile switcher
