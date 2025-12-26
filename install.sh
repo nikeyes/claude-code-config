@@ -12,7 +12,7 @@ fi
 # Create .claude directory if it doesn't exist
 mkdir -p ~/.claude
 
-echo "📋 Installing TDD Guidelines"
+echo "📋 Installing CLAUDE.md"
 gcp --backup=numbered ./CLAUDE.md ~/.claude/CLAUDE.md
 
 echo "📊 Installing Custom Status Line"

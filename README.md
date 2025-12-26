@@ -1,6 +1,6 @@
 # Claude Code Public Configuration
 
-Public, shareable configuration for Claude Code including TDD guidelines, custom commands, and utility scripts.
+Public, shareable configuration for Claude Code including CLAUDE.md, custom commands, and utility scripts.
 
 ## What's Included
 
@@ -53,7 +53,7 @@ claude-code-config/
 ├── README.md                     # This file
 ├── install.sh                    # Standalone installer
 ├── uninstall.sh                  # Uninstaller
-├── CLAUDE.md                     # TDD guidelines
+├── CLAUDE.md                     # CLAUDE.md
 ├── statusline.sh                 # Status bar script
 ├── statusline-test.sh            # Test script
 ├── switch-claude-config.sh       # Profile switcher

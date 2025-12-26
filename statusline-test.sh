@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Test con 70% (rojo, CON warning):" && echo '{
         "model": {"display_name": "Sonnet 4.5"},
         "context_window": {
