@@ -42,7 +42,7 @@ echo "🎯 Installing Custom Commands"
 mkdir -p ~/.claude/commands
 gcp --backup=numbered ./commands/*.md ~/.claude/commands/
 
-echo "⚙️  Installing Personal Settings"
+echo "⚙️ Installing Personal Settings"
 gcp --backup=numbered ./settings-personal.json ~/.claude/settings-personal.json
 
 echo ""
