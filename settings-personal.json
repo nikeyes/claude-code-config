@@ -15,5 +15,15 @@
     "type": "command",
     "command": "~/.claude/statusline.sh",
     "padding": 0
+  },
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(cat:*)",
+      "Bash(ls:*)",
+      "Skill(stepwise-dev:thoughts-management)",
+      "Bash(test:*)",
+      "Bash(tree:*)"
+    ]
   }
 }
