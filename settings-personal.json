@@ -25,5 +25,18 @@
       "Bash(test:*)",
       "Bash(tree:*)"
     ]
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"⚠️ Claude needs your approval to proceed\" with title \"Permission Required\" subtitle \"Claude Code\" sound name \"Funk\"'"
+          }
+        ]
+      }
+    ]
   }
 }
