@@ -39,3 +39,7 @@
 - Does this make intent clearer?
 - Am I repeating business logic that should be unified?
 - Can I remove anything without losing value?
+
+## Agent Usage
+- Prefer sub-agents for exploration and research
+- Keep the main context window clean — delegate heavy research

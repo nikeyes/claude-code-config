@@ -12,6 +12,43 @@ fi
 # Create .claude directory if it doesn't exist
 mkdir -p ~/.claude
 
+echo "🏪 Installing Official Marketplaces"
+# Add claude-plugins-official marketplace
+if ! claude plugin marketplace list 2>/dev/null | grep -q "claude-plugins-official"; then
+    claude plugin marketplace add anthropics/claude-plugins-official
+else
+    echo "ℹ️  Marketplace claude-plugins-official already added, skipping..."
+fi
+
+# Add claude-code-plugins marketplace
+if ! claude plugin marketplace list 2>/dev/null | grep -q "claude-code-plugins"; then
+    claude plugin marketplace add anthropics/claude-code
+else
+    echo "ℹ️  Marketplace claude-code-plugins already added, skipping..."
+fi
+
+echo "🔌 Installing Official Plugins"
+# Install claude-md-management plugin
+if ! claude plugin list 2>/dev/null | grep -q "claude-md-management"; then
+    claude plugin install claude-md-management@claude-plugins-official
+else
+    echo "ℹ️  Plugin claude-md-management already installed, skipping..."
+fi
+
+# Install claude-code-setup plugin
+if ! claude plugin list 2>/dev/null | grep -q "claude-code-setup"; then
+    claude plugin install claude-code-setup@claude-plugins-official
+else
+    echo "ℹ️  Plugin claude-code-setup already installed, skipping..."
+fi
+
+# Install pyright-lsp plugin
+if ! claude plugin list 2>/dev/null | grep -q "pyright-lsp"; then
+    claude plugin install pyright-lsp@claude-plugins-official
+else
+    echo "ℹ️  Plugin pyright-lsp already installed, skipping..."
+fi
+
 echo "🔌 Installing Claude Code Stepwise-Dev Plugin"
 # Add marketplace (only if not already added)
 if ! claude plugin marketplace list 2>/dev/null | grep -q "stepwise-dev"; then
