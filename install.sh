@@ -49,6 +49,13 @@ else
     echo "ℹ️  Plugin pyright-lsp already installed, skipping..."
 fi
 
+# Install pr-review-toolkit plugin
+if ! claude plugin list 2>/dev/null | grep -q "pr-review-toolkit"; then
+    claude plugin install pr-review-toolkit@claude-plugins-official
+else
+    echo "ℹ️  Plugin pr-review-toolkit already installed, skipping..."
+fi
+
 echo "🔌 Installing Claude Code Stepwise-Dev Plugin"
 # Add marketplace (only if not already added)
 if ! claude plugin marketplace list 2>/dev/null | grep -q "stepwise-dev"; then
@@ -78,6 +85,15 @@ chmod +x ~/.claude/switch-claude-config.sh
 echo "🎯 Installing Custom Commands"
 mkdir -p ~/.claude/commands
 gcp --backup=numbered ./commands/*.md ~/.claude/commands/
+
+echo "🧠 Installing Skills"
+mkdir -p ~/.claude/skills
+for skill_dir in ./skills/*/; do
+    skill_name=$(basename "$skill_dir")
+    echo "  Installing skill: $skill_name"
+    mkdir -p ~/.claude/skills/"$skill_name"
+    gcp --backup=numbered "$skill_dir"* ~/.claude/skills/"$skill_name"/
+done
 
 echo "⚙️ Installing Personal Settings"
 gcp --backup=numbered ./settings-personal.json ~/.claude/settings-personal.json

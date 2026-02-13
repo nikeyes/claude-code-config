@@ -13,6 +13,9 @@ rm -f ~/.claude/statusline.sh
 rm -f ~/.claude/switch-claude-config.sh
 rm -rf ~/.claude/commands
 rm -rf ~/.claude/settings-personal.json
+rm -rf ~/.claude/marketplaces
+rm -rf ~/.claude/plugins
+rm -rf ~/.claude/skills
 
 echo "✅ Public configuration removed"
 echo "ℹ️  Note: settings.json and profile files were not removed"
