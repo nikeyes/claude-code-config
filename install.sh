@@ -56,7 +56,7 @@ else
     echo "ℹ️  Plugin pr-review-toolkit already installed, skipping..."
 fi
 
-echo "🔌 Installing Claude Code Stepwise-Dev Plugin"
+echo "🔌 Installing Claude Code Stepwise-Dev Plugins"
 # Add marketplace (only if not already added)
 if ! claude plugin marketplace list 2>/dev/null | grep -q "stepwise-dev"; then
     claude plugin marketplace add nikeyes/stepwise-dev
@@ -64,12 +64,14 @@ else
     echo "ℹ️  Marketplace stepwise-dev already added, skipping..."
 fi
 
-# Install plugin (only if not already installed)
-if ! claude plugin list 2>/dev/null | grep -q "stepwise-dev"; then
-    claude plugin install stepwise-dev@stepwise-dev
-else
-    echo "ℹ️  Plugin stepwise-dev already installed, skipping..."
-fi
+# Install each stepwise sub-plugin individually
+for stepwise_plugin in stepwise-web stepwise-core stepwise-git stepwise-research; do
+    if ! claude plugin list 2>/dev/null | grep -q "^${stepwise_plugin}"; then
+        claude plugin install "${stepwise_plugin}@stepwise-dev"
+    else
+        echo "ℹ️  Plugin ${stepwise_plugin} already installed, skipping..."
+    fi
+done
 
 echo "📋 Installing CLAUDE.md"
 gcp --backup=numbered ./CLAUDE.md ~/.claude/CLAUDE.md
@@ -77,6 +79,11 @@ gcp --backup=numbered ./CLAUDE.md ~/.claude/CLAUDE.md
 echo "📊 Installing Custom Status Line"
 gcp --backup=numbered ./statusline.sh ~/.claude/statusline.sh
 chmod +x ~/.claude/statusline.sh
+
+echo "🔔 Installing Hooks"
+mkdir -p ~/.claude/hooks
+gcp --backup=numbered ./hooks/*.sh ~/.claude/hooks/
+chmod +x ~/.claude/hooks/*.sh
 
 echo "🔄 Installing Profile Switcher"
 gcp --backup=numbered ./switch-claude-config.sh ~/.claude/switch-claude-config.sh
