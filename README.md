@@ -19,6 +19,9 @@ Shareable configuration with CLAUDE.md, custom commands, and utilities.
 - `nikeyes-refactoring-codebase` - Codebase refactoring
 - `nikeyes-legacy-modernization` - Legacy code modernization
 
+**Skills:**
+- `test-desiderata` - Test quality analysis based on Kent Beck's Test Desiderata. Based on the work of [@eferro](https://github.com/eferro) — thanks for sharing it! Original skill: [https://github.com/eferro/augmentedcode-skills](https://github.com/eferro/augmentedcode-skills)
+
 ## Installation
 
 ### Requirements
@@ -29,3 +32,6 @@ Shareable configuration with CLAUDE.md, custom commands, and utilities.
 ./install.sh
 ```
 
+```bash
+./uninstall.sh
+```
