@@ -8,11 +8,14 @@
   },
   "includeCoAuthoredBy": false,
   "enabledPlugins": {
-    "stepwise-dev@stepwise-dev": true,
     "claude-md-management@claude-plugins-official": true,
     "claude-code-setup@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
-    "pr-review-toolkit@claude-plugins-official": true
+    "pr-review-toolkit@claude-plugins-official": true,
+    "stepwise-web@stepwise-dev": true,
+    "stepwise-core@stepwise-dev": true,
+    "stepwise-git@stepwise-dev": true,
+    "stepwise-research@stepwise-dev": true
   },
   "alwaysThinkingEnabled": true,
   "statusLine": {
