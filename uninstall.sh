@@ -16,6 +16,7 @@ rm -rf ~/.claude/settings-personal.json
 rm -rf ~/.claude/marketplaces
 rm -rf ~/.claude/plugins
 rm -rf ~/.claude/skills
+rm -rf ~/.claude/hooks
 
 echo "✅ Public configuration removed"
 echo "ℹ️  Note: settings.json and profile files were not removed"
