@@ -43,6 +43,8 @@ else
 fi
 
 # Install pyright-lsp plugin
+pip install pyright
+
 if ! claude plugin list 2>/dev/null | grep -q "pyright-lsp"; then
     claude plugin install pyright-lsp@claude-plugins-official
 else
