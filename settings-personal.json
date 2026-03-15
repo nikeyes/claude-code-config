@@ -16,7 +16,17 @@
     "stepwise-web@stepwise-dev": true,
     "stepwise-core@stepwise-dev": true,
     "stepwise-git@stepwise-dev": true,
-    "stepwise-research@stepwise-dev": true
+    "stepwise-research@stepwise-dev": true,
+    "chrome-devtools-mcp@ChromeDevTools": true,
+    "chrome-devtools-mcp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "chrome-devtools-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "ChromeDevTools/chrome-devtools-mcp"
+      }
+    }
   },
   "alwaysThinkingEnabled": true,
   "statusLine": {

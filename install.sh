@@ -58,6 +58,21 @@ else
     echo "ℹ️  Plugin pr-review-toolkit already installed, skipping..."
 fi
 
+echo "🔌 Installing Chrome DevTools MCP Plugin"
+# Add ChromeDevTools marketplace
+if ! claude plugin marketplace list 2>/dev/null | grep -q "ChromeDevTools"; then
+    claude plugin marketplace add ChromeDevTools/chrome-devtools-mcp
+else
+    echo "ℹ️  Marketplace ChromeDevTools already added, skipping..."
+fi
+
+# Install chrome-devtools-mcp plugin
+if ! claude plugin list 2>/dev/null | grep -q "chrome-devtools-mcp"; then
+    claude plugin install chrome-devtools-mcp
+else
+    echo "ℹ️  Plugin chrome-devtools-mcp already installed, skipping..."
+fi
+
 echo "🔌 Installing Claude Code Stepwise-Dev Plugins"
 # Add marketplace (only if not already added)
 if ! claude plugin marketplace list 2>/dev/null | grep -q "stepwise-dev"; then
