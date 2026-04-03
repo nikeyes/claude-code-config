@@ -122,6 +122,43 @@ done
 echo "⚙️ Installing Personal Settings"
 gcp --backup=numbered ./settings-personal.json ~/.claude/settings-personal.json
 
+echo "🦀 Installing RTK (Rust Token Killer)"
+if command -v brew &> /dev/null; then
+    if ! command -v rtk &> /dev/null; then
+        brew install rtk
+    else
+        echo "ℹ️  RTK already installed, skipping..."
+    fi
+elif ! command -v rtk &> /dev/null; then
+    curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
+    export PATH="$HOME/.local/bin:$PATH"
+else
+    echo "ℹ️  RTK already installed, skipping..."
+fi
+
+if command -v rtk &> /dev/null; then
+    echo "🔧 Configuring RTK for Claude Code"
+    rtk init -g --auto-patch
+
+    echo "🔕 Disabling RTK telemetry"
+    RTK_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/rtk"
+    mkdir -p "$RTK_CONFIG_DIR"
+    RTK_CONFIG="$RTK_CONFIG_DIR/config.toml"
+    if ! grep -q "\[telemetry\]" "$RTK_CONFIG" 2>/dev/null; then
+        printf '\n[telemetry]\nenabled = false\n' >> "$RTK_CONFIG"
+    fi
+
+    SHELL_RC="${ZDOTDIR:-$HOME}/.zshrc"
+    if ! grep -q "RTK_TELEMETRY_DISABLED" "$SHELL_RC" 2>/dev/null; then
+        printf '\nexport RTK_TELEMETRY_DISABLED=1  # RTK telemetry opt-out\n' >> "$SHELL_RC"
+        echo "ℹ️  Added RTK_TELEMETRY_DISABLED=1 to $SHELL_RC"
+    else
+        echo "ℹ️  RTK_TELEMETRY_DISABLED already set in $SHELL_RC, skipping..."
+    fi
+else
+    echo "⚠️  RTK installation failed, skipping configuration"
+fi
+
 echo ""
 echo "✅ Claude Code public configuration installed successfully"
 echo "🌟 If you want monitoring with Prometheus and Grafana:"
