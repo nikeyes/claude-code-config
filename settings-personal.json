@@ -5,29 +5,10 @@
     "OTEL_LOGS_EXPORTER": "otlp",
     "OTEL_EXPORTER_OTLP_PROTOCOL": "grpc",
     "OTEL_EXPORTER_OTLP_ENDPOINT": "http://localhost:4317",
-    "ENABLE_LSP_TOOLS": "1"
+    "ENABLE_LSP_TOOLS": "1",
+    "CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD": "1"
   },
   "includeCoAuthoredBy": false,
-  "enabledPlugins": {
-    "claude-md-management@claude-plugins-official": true,
-    "claude-code-setup@claude-plugins-official": true,
-    "pyright-lsp@claude-plugins-official": true,
-    "pr-review-toolkit@claude-plugins-official": true,
-    "stepwise-web@stepwise-dev": true,
-    "stepwise-core@stepwise-dev": true,
-    "stepwise-git@stepwise-dev": true,
-    "stepwise-research@stepwise-dev": true,
-    "chrome-devtools-mcp@ChromeDevTools": true,
-    "chrome-devtools-mcp@claude-plugins-official": true
-  },
-  "extraKnownMarketplaces": {
-    "chrome-devtools-plugins": {
-      "source": {
-        "source": "github",
-        "repo": "ChromeDevTools/chrome-devtools-mcp"
-      }
-    }
-  },
   "alwaysThinkingEnabled": true,
   "statusLine": {
     "type": "command",
@@ -66,5 +47,43 @@
         ]
       }
     ]
+  },
+  "enabledPlugins": {
+    "claude-md-management@claude-plugins-official": true,
+    "claude-code-setup@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "stepwise-core@stepwise-dev": true,
+    "stepwise-git@stepwise-dev": true,
+    "stepwise-web@stepwise-dev": true,
+    "stepwise-research@stepwise-dev": true,
+    "skill-creator@claude-plugins-official": true,
+    "chrome-devtools-mcp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "stepwise-dev": {
+      "source": {
+        "source": "github",
+        "repo": "nikeyes/stepwise-dev"
+      }
+    },
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
+    },
+    "claude-code-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-code"
+      }
+    },
+    "chrome-devtools-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "ChromeDevTools/chrome-devtools-mcp"
+      }
+    }
   }
 }
