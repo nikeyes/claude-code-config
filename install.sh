@@ -42,6 +42,13 @@ else
     echo "ℹ️  Plugin claude-code-setup already installed, skipping..."
 fi
 
+# Install skill creator plugin
+if ! claude plugin list 2>/dev/null | grep -q "skill-creator"; then
+    claude plugin install skill-creator@claude-plugins-official
+else
+    echo "ℹ️  Plugin skill-creator already installed, skipping..."
+fi
+
 # Install pyright-lsp plugin
 pip install pyright
 
