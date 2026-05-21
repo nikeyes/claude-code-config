@@ -2,15 +2,10 @@
 
 ## Core Principles (Priority Order)
 
-1. **Tests Pass** - Code must work correctly
-2. **Reveals Intention** - Self-documenting, readable code with clear names  
-3. **No Business Logic Duplication** - Eliminate redundant business logic (code repetition OK for clarity)
-4. **Fewest Elements** - Keep solutions simple
-
-## TDD Workflow
-- **Red**: Write failing test
-- **Green**: Minimal code to pass
-- **Refactor**: Improve while keeping tests green
+1. **Tests Pass**: Code must work correctly
+2. **Reveals Intention**: Self-documenting, readable code with clear names  
+3. **No Business Logic Duplication**: Eliminate redundant business logic (code repetition OK for clarity)
+4. **Fewest Elements**: Keep solutions simple
 
 ## Guidelines
 
@@ -42,7 +37,7 @@
 
 ## Agent Usage
 - Prefer sub-agents for exploration and research
-- Keep the main context window clean — delegate heavy research
+- Keep the main context window clean, delegate heavy research
 
 ## Git Operations
 - When working with git operations, always run `git status` and `git branch` first to confirm the current branch, uncommitted changes, and sync state before making any assumptions about the repository state.
