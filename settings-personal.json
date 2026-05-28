@@ -33,7 +33,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ~/.claude/hooks/notify-permission.sh"
+            "command": "osascript -e 'display notification \"⚠️ Claude needs your approval to proceed\" with title \"Permission Required\" subtitle \"Claude Code\" sound name \"Funk\"'"
           }
         ]
       }
@@ -43,7 +43,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ~/.claude/hooks/notify-stop.sh"
+            "command": "osascript -e 'display notification \"✅ Claude ha terminado de ejecutar la tarea\" with title \"Tarea Completada\" subtitle \"Claude Code\" sound name \"Hero\"'"
           }
         ]
       }
