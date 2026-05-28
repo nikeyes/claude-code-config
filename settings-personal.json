@@ -6,7 +6,8 @@
     "OTEL_EXPORTER_OTLP_PROTOCOL": "grpc",
     "OTEL_EXPORTER_OTLP_ENDPOINT": "http://localhost:4317",
     "ENABLE_LSP_TOOLS": "1",
-    "CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD": "1"
+    "CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD": "1",
+    "CLAUDE_CODE_DISABLE_1M_CONTEXT": "1"
   },
   "includeCoAuthoredBy": false,
   "alwaysThinkingEnabled": true,
