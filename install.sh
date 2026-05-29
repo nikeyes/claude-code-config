@@ -104,11 +104,6 @@ echo "📊 Installing Custom Status Line"
 gcp --backup=numbered ./statusline.sh ~/.claude/statusline.sh
 chmod +x ~/.claude/statusline.sh
 
-echo "🔔 Installing Hooks"
-mkdir -p ~/.claude/hooks
-gcp --backup=numbered ./hooks/*.sh ~/.claude/hooks/
-chmod +x ~/.claude/hooks/*.sh
-
 echo "🔄 Installing Profile Switcher"
 gcp --backup=numbered ./switch-claude-config.sh ~/.claude/switch-claude-config.sh
 chmod +x ~/.claude/switch-claude-config.sh
