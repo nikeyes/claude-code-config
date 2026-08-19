@@ -100,6 +100,18 @@ done
 echo "📋 Installing CLAUDE.md"
 gcp --backup=numbered ./CLAUDE.md ~/.claude/CLAUDE.md
 
+echo "📋 Installing AGENTS.md (Codex)"
+mkdir -p ~/.codex
+gcp --backup=numbered ./AGENTS.md ~/.codex/AGENTS.md
+
+echo "🔌 Enabling stepwise-dev skills/agents for Codex"
+STEPWISE_CLONE=~/.claude/plugins/marketplaces/stepwise-dev
+if [ -d "$STEPWISE_CLONE" ] && [ -f "$STEPWISE_CLONE/Makefile" ]; then
+    (cd "$STEPWISE_CLONE" && make install-codex)
+else
+    echo "ℹ️  stepwise-dev marketplace clone not found at $STEPWISE_CLONE — skipping Codex install"
+fi
+
 echo "📊 Installing Custom Status Line"
 gcp --backup=numbered ./statusline.sh ~/.claude/statusline.sh
 chmod +x ~/.claude/statusline.sh

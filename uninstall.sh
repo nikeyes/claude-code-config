@@ -17,5 +17,12 @@ rm -rf ~/.claude/marketplaces
 rm -rf ~/.claude/plugins
 rm -rf ~/.claude/skills
 
+# Remove Codex compatibility bits
+STEPWISE_CLONE=~/.claude/plugins/marketplaces/stepwise-dev
+if [ -d "$STEPWISE_CLONE" ] && [ -f "$STEPWISE_CLONE/Makefile" ]; then
+    (cd "$STEPWISE_CLONE" && make uninstall-codex) || true
+fi
+rm -f ~/.codex/AGENTS.md
+
 echo "✅ Public configuration removed"
 echo "ℹ️  Note: settings.json and profile files were not removed"
