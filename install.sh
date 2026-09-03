@@ -27,20 +27,22 @@ else
     echo "ℹ️  Marketplace claude-code-plugins already added, skipping..."
 fi
 
-echo "🔌 Installing Official Plugins"
-# Install claude-md-management plugin
+echo "🔌 Installing Official Plugins (disabled by default, enable as needed)"
+# Install claude-md-management plugin (disabled by default)
 if ! claude plugin list 2>/dev/null | grep -q "claude-md-management"; then
     claude plugin install claude-md-management@claude-plugins-official
 else
     echo "ℹ️  Plugin claude-md-management already installed, skipping..."
 fi
+claude plugin disable claude-md-management 2>/dev/null || true
 
-# Install claude-code-setup plugin
+# Install claude-code-setup plugin (disabled by default)
 if ! claude plugin list 2>/dev/null | grep -q "claude-code-setup"; then
     claude plugin install claude-code-setup@claude-plugins-official
 else
     echo "ℹ️  Plugin claude-code-setup already installed, skipping..."
 fi
+claude plugin disable claude-code-setup 2>/dev/null || true
 
 # Install skill creator plugin
 if ! claude plugin list 2>/dev/null | grep -q "skill-creator"; then
@@ -58,20 +60,14 @@ else
     echo "ℹ️  Plugin pyright-lsp already installed, skipping..."
 fi
 
-# Install pr-review-toolkit plugin
-if ! claude plugin list 2>/dev/null | grep -q "pr-review-toolkit"; then
-    claude plugin install pr-review-toolkit@claude-plugins-official
-else
-    echo "ℹ️  Plugin pr-review-toolkit already installed, skipping..."
-fi
-
-# Install chrome-devtools-mcp plugin (now published in claude-plugins-official;
-# no separate ChromeDevTools/chrome-devtools-mcp marketplace needed anymore)
+# Install chrome-devtools-mcp plugin (disabled by default; now published in
+# claude-plugins-official, no separate ChromeDevTools marketplace needed)
 if ! claude plugin list 2>/dev/null | grep -q "chrome-devtools-mcp"; then
     claude plugin install chrome-devtools-mcp@claude-plugins-official
 else
     echo "ℹ️  Plugin chrome-devtools-mcp already installed, skipping..."
 fi
+claude plugin disable chrome-devtools-mcp 2>/dev/null || true
 
 echo "🔌 Installing Claude Code Stepwise-Dev Plugins"
 # Add marketplace (only if not already added)
