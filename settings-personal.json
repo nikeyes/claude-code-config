@@ -14,6 +14,8 @@
   "autoMemoryEnabled": false,
   "includeCoAuthoredBy": false,
   "alwaysThinkingEnabled": true,
+  "autoCompactEnabled": true,
+  "autoCompactWindow": 120000,
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh",
