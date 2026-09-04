@@ -6,6 +6,8 @@ DIR=$(echo "$input" | jq -r '.workspace.current_dir')
 COST=$(echo "$input" | jq -r '.cost.total_cost_usd // 0')
 PCT=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
 DURATION_MS=$(echo "$input" | jq -r '.cost.total_duration_ms // 0')
+TOKENS=$(echo "$input" | jq -r '.context_window.total_input_tokens // 0')
+EFFORT=$(echo "$input" | jq -r '.effort.level // "default"')
 
 CYAN='\033[36m'; GREEN='\033[32m'; YELLOW='\033[33m'; RED='\033[31m'; RESET='\033[0m'
 
@@ -23,5 +25,11 @@ BRANCH=""
 git rev-parse --git-dir > /dev/null 2>&1 && BRANCH=" | 🌿 $(git branch --show-current 2>/dev/null)"
 
 echo -e "${CYAN}[$MODEL]${RESET} 📁 ${DIR##*/}$BRANCH"
+if [ "$TOKENS" -ge 1000 ]; then
+  TOKENS_FMT=$(awk -v t="$TOKENS" 'BEGIN { printf "%.1fK", t / 1000 }')
+else
+  TOKENS_FMT="$TOKENS"
+fi
+
 COST_FMT=$(printf '$%.2f' "$COST")
-echo -e "${BAR_COLOR}${BAR}${RESET} ${PCT}% | ${YELLOW}${COST_FMT}${RESET} | ⏱️ ${MINS}m ${SECS}s"
+echo -e "${BAR_COLOR}${BAR}${RESET} ${PCT}% (${TOKENS_FMT} tok) | ${YELLOW}${COST_FMT}${RESET} | ⏱️ ${MINS}m ${SECS}s | ⚙️ ${EFFORT}"
