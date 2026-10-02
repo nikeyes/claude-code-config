@@ -24,5 +24,13 @@ if [ -d "$STEPWISE_CLONE" ] && [ -f "$STEPWISE_CLONE/Makefile" ]; then
 fi
 rm -f ~/.codex/AGENTS.md
 
+# Remove Herdr integration and configuration
+# Session state (session.json, session-snapshots/) is intentionally preserved
+if command -v herdr &> /dev/null; then
+    herdr integration uninstall claude || true
+    herdr integration uninstall codex || true
+fi
+rm -f ~/.config/herdr/config.toml
+
 echo "✅ Public configuration removed"
 echo "ℹ️  Note: settings.json and profile files were not removed"

@@ -23,3 +23,10 @@ fi
 cp "${SOURCE_FILE}" "${TARGET_FILE}"
 
 echo "✅ Configuration switched to: ${PROFILE}"
+
+# Herdr registers its own SessionStart hook in settings.json, which the copy
+# above overwrites. Let Herdr re-declare it rather than duplicating its hook
+# shape (and version) in the profile files.
+if command -v herdr &> /dev/null; then
+    herdr integration install claude
+fi
