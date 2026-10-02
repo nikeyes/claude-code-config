@@ -9,6 +9,7 @@ Shareable configuration with CLAUDE.md, custom commands, and utilities.
 - `settings-personal.json` - Personal configuration with local telemetry
 - `statusline.sh` - Context usage status bar with color-coded progress
 - `switch-claude-config.sh` - Profile switcher if you have personal Claude Code licence and company Claude Code licence
+- `herdr-config.toml` - [Herdr](https://herdr.dev) terminal workspace manager used as the Claude Code front-end (theme, sidebar layout, agent-state hooks)
 
 **Plugins:**
 - Stepwise-Dev - Advanced workflow plugin: [https://github.com/nikeyes/stepwise-dev](https://github.com/nikeyes/stepwise-dev)
@@ -26,6 +27,12 @@ Shareable configuration with CLAUDE.md, custom commands, and utilities.
 
 ### Requirements
 - GNU cp (`gcp`) and `jq`
+
+The installer also sets up [Herdr](https://herdr.dev/docs/install/) (installed to
+`~/.local/bin/herdr` if missing), copies `herdr-config.toml` to
+`~/.config/herdr/config.toml`, and installs its agent-state hooks for Claude Code
+and Codex. The hooks are versioned and drift behind the binary, so they are
+reinstalled on every run; check them anytime with `herdr integration status`.
 
 ### Standalone
 ```bash

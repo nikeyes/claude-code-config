@@ -101,6 +101,30 @@ else
     echo "ℹ️  stepwise-dev marketplace clone not found at $STEPWISE_CLONE — skipping Codex install"
 fi
 
+echo "🐑 Installing Herdr"
+# Terminal workspace manager used as the front-end for Claude Code
+if ! command -v herdr &> /dev/null; then
+    curl -fsSL https://herdr.dev/install.sh | sh
+else
+    echo "ℹ️  Herdr already installed, skipping..."
+fi
+
+# Pin the update channel so the repo, not the machine, is the source of truth
+herdr channel set stable
+
+echo "⚙️ Installing Herdr Configuration"
+mkdir -p ~/.config/herdr
+gcp --backup=numbered ./herdr-config.toml ~/.config/herdr/config.toml
+
+echo "🪝 Installing Herdr agent-state hooks"
+# Not idempotent-by-skip on purpose: hooks are versioned and drift behind the
+# binary, so reinstall them on every run to keep them current.
+herdr integration install claude
+herdr integration install codex
+
+# Pick up the new config.toml if a server is already running
+herdr server reload-config 2>/dev/null || true
+
 echo "📊 Installing Custom Status Line"
 gcp --backup=numbered ./statusline.sh ~/.claude/statusline.sh
 chmod +x ~/.claude/statusline.sh
