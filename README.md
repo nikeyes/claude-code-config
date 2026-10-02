@@ -34,6 +34,12 @@ The installer also sets up [Herdr](https://herdr.dev/docs/install/) (installed t
 and Codex. The hooks are versioned and drift behind the binary, so they are
 reinstalled on every run; check them anytime with `herdr integration status`.
 
+Herdr also registers a `SessionStart` hook directly in `~/.claude/settings.json`.
+Because `switch-claude-config.sh` overwrites that file wholesale, it re-runs
+`herdr integration install claude` after switching profiles — that way Herdr stays
+the single source of truth for its own hook instead of the profile files carrying
+a stale copy of it.
+
 ### Standalone
 ```bash
 ./install.sh
