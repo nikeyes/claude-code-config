@@ -3,6 +3,13 @@ set -euo pipefail
 
 echo "🌟 Installing Claude Code Public Configuration"
 
+# GNU cp is `gcp` on macOS (Homebrew coreutils) and plain `cp` on Linux
+if command -v gcp &> /dev/null; then
+    GNU_CP="gcp"
+else
+    GNU_CP="cp"
+fi
+
 # Check if Claude Code is installed
 if ! command -v claude &> /dev/null; then
     echo "⚠️  Claude Code is not installed. Installing now..."
@@ -52,7 +59,16 @@ else
 fi
 
 # Install pyright-lsp plugin
-pip install pyright
+# Ubuntu blocks system-wide pip (PEP 668), so fall back to npm there
+if command -v pyright &> /dev/null; then
+    echo "ℹ️  pyright already installed, skipping..."
+elif command -v pip &> /dev/null; then
+    pip install pyright
+elif command -v npm &> /dev/null; then
+    npm install -g --prefix ~/.local pyright
+else
+    echo "⚠️  Neither pip nor npm found, skipping pyright"
+fi
 
 if ! claude plugin list 2>/dev/null | grep -q "pyright-lsp"; then
     claude plugin install pyright-lsp@claude-plugins-official
@@ -78,7 +94,7 @@ else
 fi
 
 # Install each stepwise sub-plugin individually
-for stepwise_plugin in stepwise-web stepwise-core stepwise-git stepwise-research; do
+for stepwise_plugin in stepwise-web stepwise-core stepwise-git; do
     if ! claude plugin list 2>/dev/null | grep -q "^${stepwise_plugin}"; then
         claude plugin install "${stepwise_plugin}@stepwise-dev"
     else
@@ -87,11 +103,11 @@ for stepwise_plugin in stepwise-web stepwise-core stepwise-git stepwise-research
 done
 
 echo "📋 Installing CLAUDE.md"
-gcp --backup=numbered ./CLAUDE.md ~/.claude/CLAUDE.md
+"$GNU_CP" --backup=numbered ./CLAUDE.md ~/.claude/CLAUDE.md
 
 echo "📋 Installing AGENTS.md (Codex)"
 mkdir -p ~/.codex
-gcp --backup=numbered ./AGENTS.md ~/.codex/AGENTS.md
+"$GNU_CP" --backup=numbered ./AGENTS.md ~/.codex/AGENTS.md
 
 echo "🔌 Enabling stepwise-dev skills/agents for Codex"
 STEPWISE_CLONE=~/.claude/plugins/marketplaces/stepwise-dev
@@ -114,27 +130,31 @@ herdr channel set stable
 
 echo "⚙️ Installing Herdr Configuration"
 mkdir -p ~/.config/herdr
-gcp --backup=numbered ./herdr-config.toml ~/.config/herdr/config.toml
+"$GNU_CP" --backup=numbered ./herdr-config.toml ~/.config/herdr/config.toml
 
 echo "🪝 Installing Herdr agent-state hooks"
 # Not idempotent-by-skip on purpose: hooks are versioned and drift behind the
 # binary, so reinstall them on every run to keep them current.
 herdr integration install claude
-herdr integration install codex
+if command -v codex &> /dev/null; then
+    herdr integration install codex
+else
+    echo "ℹ️  Codex not installed, skipping its Herdr hooks..."
+fi
 
 # Pick up the new config.toml if a server is already running
 herdr server reload-config 2>/dev/null || true
 
 echo "📊 Installing Custom Status Line"
-gcp --backup=numbered ./statusline.sh ~/.claude/statusline.sh
+"$GNU_CP" --backup=numbered ./statusline.sh ~/.claude/statusline.sh
 chmod +x ~/.claude/statusline.sh
 
 echo "🔄 Installing Profile Switcher"
-gcp --backup=numbered ./switch-claude-config.sh ~/.claude/switch-claude-config.sh
+"$GNU_CP" --backup=numbered ./switch-claude-config.sh ~/.claude/switch-claude-config.sh
 chmod +x ~/.claude/switch-claude-config.sh
 
 echo "⚙️ Installing Personal Settings"
-gcp --backup=numbered ./settings-personal.json ~/.claude/settings-personal.json
+"$GNU_CP" --backup=numbered ./settings-personal.json ~/.claude/settings-personal.json
 
 echo ""
 echo "✅ Claude Code public configuration installed successfully"
