@@ -26,7 +26,8 @@ Shareable configuration with CLAUDE.md, custom commands, and utilities.
 ## Installation
 
 ### Requirements
-- GNU cp (`gcp`) and `jq`
+- GNU cp (`gcp` on macOS, `cp` on Linux) and `jq`
+- `pip` or `npm`, for pyright
 
 The installer also sets up [Herdr](https://herdr.dev/docs/install/) (installed to
 `~/.local/bin/herdr` if missing), copies `herdr-config.toml` to

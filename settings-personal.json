@@ -61,7 +61,6 @@
     "stepwise-core@stepwise-dev": true,
     "stepwise-git@stepwise-dev": true,
     "stepwise-web@stepwise-dev": true,
-    "stepwise-research@stepwise-dev": true,
     "skill-creator@claude-plugins-official": true,
     "chrome-devtools-mcp@claude-plugins-official": false
   },
